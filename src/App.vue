@@ -1,11 +1,18 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <PreguntaView/>
 </template>
 
+<script>
+import PreguntaView from '@/views/PreguntaView.vue'
+
+export default {
+  name: 'AppPregunta',
+  components: {
+    PreguntaView
+  }
+}
+
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
