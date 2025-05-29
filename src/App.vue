@@ -1,18 +1,17 @@
 <template>
-  <PreguntaView/>
+  <NavBar />
 </template>
 
 <script>
-import PreguntaView from '@/views/PreguntaView.vue'
+import NavBar from "@/components/NavBar.vue";
 
 export default {
-  name: 'AppPregunta',
   components: {
-    PreguntaView
-  }
-}
-
+    NavBar,
+  },
+};
 </script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
