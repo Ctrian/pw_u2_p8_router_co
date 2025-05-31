@@ -29,9 +29,8 @@
     </ul>
 
     <div>
-        <button v-on:click="ontenerPathVariable()"> Prueba </button>
+      <button v-on:click="ontenerPathVariable()">Prueba</button>
     </div>
-
   </div>
 </template>
 
@@ -116,17 +115,48 @@ export default {
       // this.lista.push(nuevo);
     },
     ontenerPathVariable() {
-        const cedula = this.$route.params.cedula;
-        console.log(cedula);
+      const cedula = this.$route.params.cedula;
+      console.log(cedula);
 
-        const anio = this.$route.query.anio;
-        console.log(anio);
+      const anio = this.$route.query.anio;
+      console.log(anio);
 
-        const mes = this.$route.query.mes;
-        console.log(mes);
-
+      const mes = this.$route.query.mes;
+      console.log(mes);
     },
   },
+  beforeCreate() {
+    console.log("beforeCreate");
+  },
+  created() {
+    console.log("Created");
+  },
+  beforeMount() {
+    console.log("beforeMount");
+  },
+  mounted() {
+    console.log("mounted");
+    const cedula = this.$route.params.cedula;
+    console.log(cedula);
+
+    const anio = this.$route.query.anio;
+    console.log(anio);
+
+    const mes = this.$route.query.mes;
+    console.log(mes);
+  },
+  beforeUpdate() {
+    console.log("beforeUpdate");
+  },
+  updated() {
+    console.log("updated");
+  },
+  beforeUnmount() {
+    console.log('beforeUnmounted');
+  },
+  unmounted() {
+    console.log('unmounted');
+  }
 };
 </script>
 

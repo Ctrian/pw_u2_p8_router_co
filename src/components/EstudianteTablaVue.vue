@@ -172,7 +172,7 @@ export default {
         // let validar = this.mensaje.edad.primero;
         let numero = 0;
 
-        if (this.nuevoNombre === null) {
+        if (this.nuevoNombre === "") {
           this.mensaje.nombre = "El nombre es obligatorio";
         } else {
           numero++;
