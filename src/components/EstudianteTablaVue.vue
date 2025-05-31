@@ -1,16 +1,18 @@
 <template>
   <div class="container">
     <div v-show="mostrar">
-      <h1>Paciente agregado</h1>
+      <h1>{{ mensajeFinal }}</h1>
     </div>
 
     <form class="formulario">
       <div class="input-group">
         <label for="id_nombre">Nombre Completo:</label>
         <input v-model="nuevoNombre" id="id_nombre" type="text" />
+        <span v-if="mensaje.nombre">{{ mensaje.nombre }}</span>
 
         <label for="id_edad">Edad:</label>
         <input v-model="nuevoEdad" id="id_edad" type="number" />
+        <span v-if="mensaje.edad">{{ mensaje.edad }}</span>
 
         <label for="id_enfermedad_cronica"
           >¿Padece alguna enfermedad crónica? (Especifique cual):</label
@@ -27,7 +29,11 @@
         <label for="id_actividad_fisica"
           >Nivel de actividad física semanal:</label
         >
-        <select v-model="nuevoActividadFisica" id="id_actividad_fisica" class="select_actividad">
+        <select
+          v-model="nuevoActividadFisica"
+          id="id_actividad_fisica"
+          class="select_actividad"
+        >
           <option disabled value="">Seleccione una opción</option>
           <option value="sedentario">Sedentario</option>
           <option value="ligero">Ligero</option>
@@ -122,33 +128,75 @@ export default {
         },
       ],
       mostrar: false,
-      nuevoNombre: "",
-      nuevoEdad: "",
+      nuevoNombre: null,
+      nuevoEdad: 0,
       nuevaEnfermedadCronica: "",
       nuevoSintomas: "",
       nuevoActividadFisica: "",
+      nombreMensaje: false,
+      edadMensaje: false,
+      mensaje: {
+        nombre: null,
+        edad: null,
+      },
+      mensajeFinal: null
     };
   },
   methods: {
     agregarEstudiante() {
-      const nuevo = {
-        nombre: this.nuevoNombre,
-        edad: this.nuevoEdad,
-        enfermedad: this.nuevaEnfermedadCronica,
-        sintomas: this.nuevoSintomas,
-        actividad: this.nuevoActividadFisica,
-      };
-      this.lista.unshift(nuevo);
-      this.mostrar = true;
-      setTimeout(() => {
-        this.mostrar = false;
-      }, 3000);
-      // Limpiar campos
-      this.nuevoNombre = "";
-      this.nuevoEdad = "";
-      this.nuevaEnfermedadCronica = "";
-      this.nuevoSintomas = "";
-      this.nuevoActividadFisica = "";
+      if (this.validarEntradas()) {
+        const nuevo = {
+          nombre: this.nuevoNombre,
+          edad: this.nuevoEdad,
+          enfermedad: this.nuevaEnfermedadCronica,
+          sintomas: this.nuevoSintomas,
+          actividad: this.nuevoActividadFisica,
+        };
+        this.lista.unshift(nuevo);
+        this.mostrar = true;
+        setTimeout(() => {
+          this.mostrar = false;
+        }, 3000);
+        // Limpiar campos
+        this.nuevoNombre = "";
+        this.nuevoEdad = "";
+        this.nuevaEnfermedadCronica = "";
+        this.nuevoSintomas = "";
+        this.nuevoActividadFisica = "";
+      }
+      this.mensajeFinal = "Cita guardada";
+      this.limpiarPagina();
+    },
+    validarEntradas() {
+      try {
+        // let validar = this.mensaje.edad.primero;
+        let numero = 0;
+
+        if (this.nuevoNombre === null) {
+          this.mensaje.nombre = "El nombre es obligatorio";
+        } else {
+          numero++;
+        }
+        if (this.nuevoEdad === 0) {
+          this.mensaje.edad = "La edad es obligatoria";
+        } else {
+          numero++;
+        }
+        if (numero === 2) {
+          return true;
+        } else {
+          return false;
+        }
+      } catch (e) {
+        console.error("Error, ha ocurrido un problema");
+        console.error(e);
+        this.mostrar = true;
+        this.mensajeFinal = "ERROR";
+      }
+    },
+    limpiarPagina() {
+      this.nombre = null;
+      this.edad = "";
     },
   },
 };
