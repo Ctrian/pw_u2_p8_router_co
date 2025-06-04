@@ -39,6 +39,10 @@ const routes = [
   {path: '/hm',
     name: 'hmView',
     component: () => import(/* webpackChunkName: "hmView" */ '../views/HolaMundoView.vue')
+  },
+  {path: '/pokemon',
+    name: 'pokemonView',
+    component: () => import(/* webpackChunkName: "pokemon" */ '../views/PokemonView.vue')
   }
 ]
 
