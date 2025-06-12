@@ -1,17 +1,17 @@
 <template>
+  {{ mensaje1 }}
   <div class="image-container">
-    <!-- objetivo: mostrar una imagen -->
     <img
-      v-if="!mostrar"
+      v-if="!mostrarImagen"
       class="ocultar"
       :src="imagenFuente"
-      alt="No se puede renderizar la imagen del pokemón"
+      alt="No se puede renderizar pokemon"
     />
 
     <img
-      v-if="mostrar"
-      v-bind:src="imagenFuente"
-      alt="No se puede renderizar la imagen del pokemón"
+      v-if="mostrarImagen"
+      :src="imagenFuente"
+      alt="No se puede renderizar pokemon"
     />
   </div>
 </template>
@@ -20,18 +20,18 @@
 export default {
   props: {
     pokemonId: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     mostrarImagen: {
-        type:Boolean,
-        required: true,
-        default: false
-    }
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
   data() {
     return {
-      mostrar: this.mostrarImagen,
+      mensaje1: "mensaje 1",
     };
   },
   computed: {
@@ -45,15 +45,12 @@ export default {
 <style scoped>
 img {
   height: 200px;
-  /* atras de la imagen con la clase ocultar */
   position: absolute;
-  right: 42%;
+  right: 45%;
 }
-
 .ocultar {
   filter: brightness(0);
 }
-
 .image-container {
   height: 200px;
 }

@@ -1,43 +1,43 @@
 import axios from "axios";
 
 const consumirPokemon = async (id) => {
-    const respuesta = axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`).then(respuesta => respuesta.data)
+    const respuesta = 
+    axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`).then(rpt => rpt.data)
     return respuesta;
 }
-
-const obtenerObjetoPokemon = async (numeroID) => {
-    const data = await consumirPokemon(numeroID);
+const obtenerObjetoPokemon = async (id) => {
+    const data = await consumirPokemon(id);
     console.log(data.name);
     const pokemon = {
         nombre: data.name,
-        id: data.id
+        id: data.id,
     }
     return pokemon;
 }
 
-const obtenerArregloNumerico = (longitud) => {
+const obtenerAlegroNumerico =  (longitud) => {
     const vector = [];
     for (let i = 0; i < longitud; i++) {
-        vector[i] = obtenerAleatorio(1, 510);
+        vector[i] =  obtenerAleatorio(1, 640);
     }
     return vector;
 }
 
-function obtenerAleatorio(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+const obtenerAleatorio =  (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)+1);
 }
 
 const obtenerArregloPokemon = async (arregloNumerico) => {
     const vector = [];
     for (let numero of arregloNumerico) {
-        const objetoPokemon = await obtenerObjetoPokemon(numero);
-        vector.push();
+        const objetoPokemon  = await obtenerObjetoPokemon(numero);
+        vector.push(objetoPokemon);
     }
     return vector;
 }
 
 const obtenerOpciones = async (longitud) => {
-    const vector = obtenerArregloNumerico(longitud);
+    const vector = obtenerAlegroNumerico(longitud);
     const vectorObjetos = await obtenerArregloPokemon(vector);
     return vectorObjetos;
 }
@@ -47,7 +47,11 @@ export const consumirPokemonFachada = async (id) => {
     return await consumirPokemon(id);
 }
 
-// Función fachada
+
 export const obtenerOpcionesFachada = async (longitud) => {
-    return await obtenerOpciones(longitud);
+    return await obtenerOpciones(longitud)
+}
+
+export function obtenerAleatorioFachada(min,max){
+    return obtenerAleatorio(min,max);
 }
