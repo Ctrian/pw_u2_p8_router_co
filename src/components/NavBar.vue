@@ -7,7 +7,8 @@
     <router-link to="/pregunta"> Pregunta </router-link> |
     <router-link to="/estudiante/tabla"> Estudiante Tabla </router-link> |
     <router-link to="/hm"> Hola Mundo </router-link> |
-    <router-link to="/pokemon"> Pokemon </router-link>
+    <router-link to="/pokemon"> Pokemon </router-link> |
+    <router-link to="/responsive"> Responsive </router-link>
   </nav>
   <router-view/>
 </template>
